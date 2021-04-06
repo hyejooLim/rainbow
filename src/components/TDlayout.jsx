@@ -5,11 +5,12 @@ import TDlist from './TDlist';
 import TDadd from './TDadd';
 
 const TDlayoutBlock = styled.div`
-  width: 400px;
+  width: 390px;
   height: 620px;
+  position: relative;
   margin: auto;
   margin-top: 40px;
-  background-color: #fafafa;
+  background-color: white;
   border-radius: 15px;
   border-bottom: 24px solid #8916ED;
 `;

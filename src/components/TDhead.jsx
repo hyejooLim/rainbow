@@ -2,32 +2,27 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const TDheadBlock = styled.header`
-  border-top: 24px solid #D02424;
+  border-top: 24px solid #d02424;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   border-bottom: 1px solid #c3c3c3;
+  padding: 35px 30px;
 
-  * {
-    margin-left: 40px;
+  .date {
+    color: #4e4e4e;
+    font-size: 24px;
   }
-`;
 
-const TDdate = styled.div`
-  color: #4e4e4e;
-  margin-top: 30px;
-  font-size: 24px;
-`;
+  .day {
+    color: #cacaca;
+    font-size: 17px;
+  }
 
-const Day = styled.div`
-  color: #cacaca;
-  font-size: 18px;
-`;
-
-const LeftWork = styled.div`
-  color: #0FD3B5;
-  font-size: 20px;
-  margin-top: 20px;
-  margin-bottom: 24px;
+  .left-work {
+    color: #0fd3b5;
+    font-size: 18px;
+    margin-top: 20px;
+  }
 `;
 
 const TDhead = () => {
@@ -55,11 +50,11 @@ const TDhead = () => {
 
   return (
     <TDheadBlock>
-      <TDdate>
+      <div className='date'>
         {year}년 {month}월 {date}일
-      </TDdate>
-      <Day>{day}요일</Day>
-      <LeftWork>남은 할 일: {leftwork}개</LeftWork>
+      </div>
+      <div className='day'>{day}요일</div>
+      <div className='left-work'>남은 할 일: {leftwork}개</div>
     </TDheadBlock>
   );
 };
