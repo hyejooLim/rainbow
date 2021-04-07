@@ -13,6 +13,9 @@ const TDlayoutBlock = styled.div`
   background-color: white;
   border-radius: 15px;
   border-bottom: 24px solid #8916ed;
+  box-shadow: 1px 2px 18px -1px rgba(95, 95, 95, 1);
+  -webkit-box-shadow: 1px 2px 18px -1px rgba(95, 95, 95, 1);
+  -moz-box-shadow: 1px 2px 18px -1px rgba(95, 95, 95, 1);
   display: flex;
   flex-direction: column;
 `;
