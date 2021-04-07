@@ -69,12 +69,12 @@ const TDadd = () => {
   const onClickBtn = () => setOpen(!open);
   const onChangeInput = (e) => setValue(e.target.value);
   
-  // eslint-disable-next-line
   const onSubmitForm = useCallback((e) => {
     e.preventDefault();
     dispatch({ type: CREATE, id: nextId.current, text: value });
     nextId.current += 1;
     setValue('');
+    // eslint-disable-next-line
   }, [value, nextId]);
 
   return (
@@ -86,6 +86,7 @@ const TDadd = () => {
           </InputForm>
         </InputFormContainer>
       )}
+    {/* eslint-disable-next-line */}
       {useMemo(() => <AddBtn onClick={onClickBtn} open={open}>
         <MdAdd />
       </AddBtn>, [open])}

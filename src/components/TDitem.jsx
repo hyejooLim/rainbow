@@ -67,13 +67,15 @@ const TDitem = ({ id, done, text }) => {
     dispatch({ type: REMOVE, id });
   };
 
-  // eslint-disable-next-line
   return (
     <TDitemBlock>
       {useMemo(() => <CheckCircle onClick={onToggle} done={done}>
         {done && <MdDone />}
+      {/* eslint-disable-next-line */}
       </CheckCircle>, [done])}
       <Text done={done}>{text}</Text>
+
+      {/* eslint-disable-next-line */}
       {useMemo(() => <Remove onClick={onRemove}>
         <MdDelete />
       </Remove>, [])}
