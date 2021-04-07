@@ -1,10 +1,13 @@
 import './App.css';
 import TDlayout from './components/TDlayout';
+import TDcontext from './TDcontext';
 
 function App() {
   return (
     <>
-      <TDlayout />
+      <TDcontext>
+        <TDlayout />
+      </TDcontext>
     </>
   );
 }
