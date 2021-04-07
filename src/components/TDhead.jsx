@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, memo, useMemo } from 'react';
+import { TodosContext } from '../TDcontext';
+import { GiRainbowStar } from 'react-icons/gi';
 import styled from 'styled-components';
 
 const TDheadBlock = styled.header`
@@ -10,7 +12,8 @@ const TDheadBlock = styled.header`
 
   .date {
     color: #4e4e4e;
-    font-size: 24px;
+    font-size: 25px;
+    margin: 0;
   }
 
   .day {
@@ -26,37 +29,31 @@ const TDheadBlock = styled.header`
 `;
 
 const TDhead = () => {
-  const [year, setYear] = useState(0);
-  const [month, setMonth] = useState(0);
-  const [date, setDate] = useState(0);
-  const [day, setDay] = useState('');
-  const [leftwork, setLeftWork] = useState(0);
+  const date = new Date();
+  const dateString = date.toLocaleDateString('ko-KR', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
 
-  useEffect(() => {
-    const date = new Date();
-    setYear(date.getFullYear());
-    setMonth(date.getMonth() + 1);
-    setDate(date.getDate());
-    if (date.getDay() === 0) {
-      setDay('일');
-    } else if (date.getDay() === 1) {
-      setDay('월');
-    } else if (date.getDay() === 2) {
-      setDay('화');
-    } else if (date.getDay() === 3) {
-      setDay('수');
-    }
-  }, []);
+  const dayString = date.toLocaleDateString('ko-KR', {
+    weekday: 'long',
+  });
+
+  const { state } = useContext(TodosContext);
+  console.log(state);
+  const leftWork = state.filter((todo) => !todo.done);
 
   return (
     <TDheadBlock>
-      <div className='date'>
-        {year}년 {month}월 {date}일
-      </div>
-      <div className='day'>{day}요일</div>
-      <div className='left-work'>남은 할 일: {leftwork}개</div>
+      <h1 className='date'>
+        {dateString}
+        {useMemo(() => <GiRainbowStar />, [])}
+      </h1>
+      <div className='day'>{dayString}</div>
+      <div className='left-work'>남은 할 일: {leftWork.length}개</div>
     </TDheadBlock>
   );
 };
 
-export default TDhead;
+export default memo(TDhead);

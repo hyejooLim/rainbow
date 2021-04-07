@@ -1,6 +1,7 @@
-import React from 'react';
-import styled, { css } from 'styled-components';
+import React, { useContext, memo, useMemo } from 'react';
 import { MdDone, MdDelete } from 'react-icons/md';
+import { TodosContext, TOGGLE, REMOVE } from '../TDcontext';
+import styled, { css } from 'styled-components';
 
 const Remove = styled.div`
   cursor: pointer;
@@ -16,7 +17,7 @@ const Remove = styled.div`
 const TDitemBlock = styled.div`
   display: flex;
   align-items: center;
-  padding: 18px 30px 0 30px;
+  padding-bottom: 10px;
   font-size: 16px;
 
   &:hover {
@@ -45,7 +46,7 @@ const CheckCircle = styled.div`
 `;
 
 const Text = styled.div`
-  flex: 1; // 차지할 수 있는 영역 모두 차지
+  flex: 1;
 
   ${(props) =>
     props.done &&
@@ -55,16 +56,28 @@ const Text = styled.div`
 `;
 
 const TDitem = ({ id, done, text }) => {
+  const { dispatch } = useContext(TodosContext);
+
+  const onToggle = () => {
+    console.log(id);
+    dispatch({ type: TOGGLE, id });
+  };
+
+  const onRemove = () => {
+    dispatch({ type: REMOVE, id });
+  };
+
   return (
     <TDitemBlock>
-      <CheckCircle done={done}>{done && <MdDone />}</CheckCircle>{' '}
-      {/* done=true이면 체크표시 */}
-      <Text done={done}>{text}</Text> {/* done=true이면 글자색 연하게 */}
-      <Remove>
+      {useMemo(() => <CheckCircle onClick={onToggle} done={done}>
+        {done && <MdDone />}
+      </CheckCircle>, [done])}
+      <Text done={done}>{text}</Text>
+      {useMemo(() => <Remove onClick={onRemove}>
         <MdDelete />
-      </Remove>
+      </Remove>, [])}
     </TDitemBlock>
   );
 };
 
-export default TDitem;
+export default memo(TDitem);

@@ -5,14 +5,16 @@ import TDlist from './TDlist';
 import TDadd from './TDadd';
 
 const TDlayoutBlock = styled.div`
-  width: 390px;
-  height: 620px;
+  width: 375px;
+  height: 590px;
   position: relative;
-  margin: auto;
+  margin: 0 auto;
   margin-top: 40px;
   background-color: white;
   border-radius: 15px;
-  border-bottom: 24px solid #8916ED;
+  border-bottom: 24px solid #8916ed;
+  display: flex;
+  flex-direction: column;
 `;
 
 const TDlayout = () => {

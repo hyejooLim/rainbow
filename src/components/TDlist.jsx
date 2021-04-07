@@ -1,20 +1,24 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useContext, memo } from 'react';
 import TDitem from './TDitem';
+import { TodosContext } from '../TDcontext';
+import styled from 'styled-components';
 
 const TDlistBlock = styled.div`
-  flex: 1;
+  flex: 1; // 차지할 수 있는 영역 모두 차지 (부모 컴포넌트도 flex box이어야 함)
+  padding: 20px 30px;
   overflow-y: auto;
 `;
 
 const TDlist = () => {
+  const { state } = useContext(TodosContext);
+
   return (
     <TDlistBlock>
-      <TDitem text='투두리스트 만들기' done={true} />
-      <TDitem text='임베디드컴퓨팅 수업듣기' done={false} />
-      <TDitem text='자소서 작성하기' done={true} />
+      {state.map((todo) => (
+        <TDitem key={todo.id} id={todo.id} text={todo.text} done={todo.done}></TDitem>
+      ))}
     </TDlistBlock>
-  )
+  );
 };
 
-export default TDlist;
+export default memo(TDlist);

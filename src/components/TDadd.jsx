@@ -1,11 +1,12 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useCallback, useContext, useMemo, memo } from 'react';
 import styled, { css } from 'styled-components';
 import { MdAdd } from 'react-icons/md';
+import { TodosContext, CREATE } from '../TDcontext';
 
 const AddBtn = styled.button`
-  width: 60px;
-  height: 60px;
-  font-size: 40px;
+  width: 62px;
+  height: 62px;
+  font-size: 42px;
   background-color: #0fd3b5;
   color: white;
   border-radius: 50%;
@@ -17,7 +18,7 @@ const AddBtn = styled.button`
   outline: none;
   position: absolute;
   left: 50%;
-  bottom: 0px;
+  bottom: 70px;
   transform: translate(-50%, 50%);
 
   &:hover {
@@ -27,10 +28,11 @@ const AddBtn = styled.button`
 
   transition: 0.125s all ease-in;
   ${(props) =>
-    props.click &&
+    props.open &&
     css`
       background-color: #fb6060;
       transform: translate(-50%, 50%) rotate(45deg);
+      bottom: -10px;
 
       &:hover {
         background-color: #fa9595;
@@ -54,32 +56,40 @@ const Input = styled.input`
   width: 100%;
   padding: 12px;
   border: 1px solid #dee2e6;
-  font-size: 18px;
+  font-size: 15px;
   outline: none; // 파란 테두리 제거
 `;
 
 const TDadd = () => {
-  const [click, setClick] = useState(false);
+  const [value, setValue] = useState('');
+  const [open, setOpen] = useState(false);
 
-  const onClickBtn = (e) => {
+  const { nextId, dispatch } = useContext(TodosContext);
+
+  const onClickBtn = () => setOpen(!open);
+  const onChangeInput = (e) => setValue(e.target.value);
+
+  const onSubmitForm = useCallback((e) => {
     e.preventDefault();
-    setClick(!click);
-  };
+    dispatch({ type: CREATE, id: nextId.current, text: value });
+    nextId.current += 1;
+    setValue('');
+  }, [value, nextId]);
 
   return (
     <>
-      {click && (
+      {open && (
         <InputFormContainer>
-          <InputForm>
-            <Input autoFocus placeholder='할 일을 입력 후, ENTER를 누르세요.' />
+          <InputForm onSubmit={onSubmitForm}>
+            <Input autoFocus placeholder='할 일을 입력 후, ENTER를 누르세요.' value={value} onChange={onChangeInput} />
           </InputForm>
         </InputFormContainer>
       )}
-      <AddBtn onClick={onClickBtn} click={click}>
+      {useMemo(() => <AddBtn onClick={onClickBtn} open={open}>
         <MdAdd />
-      </AddBtn>
+      </AddBtn>, [open])}
     </>
   );
 };
 
-export default TDadd;
+export default memo(TDadd);
