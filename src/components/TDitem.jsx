@@ -75,9 +75,9 @@ const TDitem = ({ id, done, text }) => {
       </CheckCircle>, [done])}
       <Text done={done}>{text}</Text>
 
-      {/* eslint-disable-next-line */}
       {useMemo(() => <Remove onClick={onRemove}>
         <MdDelete />
+      {/* eslint-disable-next-line */}
       </Remove>, [])}
     </TDitemBlock>
   );

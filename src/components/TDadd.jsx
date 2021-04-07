@@ -86,9 +86,9 @@ const TDadd = () => {
           </InputForm>
         </InputFormContainer>
       )}
-    {/* eslint-disable-next-line */}
       {useMemo(() => <AddBtn onClick={onClickBtn} open={open}>
         <MdAdd />
+    {/* eslint-disable-next-line */}
       </AddBtn>, [open])}
     </>
   );
