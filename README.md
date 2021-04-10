@@ -45,8 +45,8 @@
 
 ## 4. 성능 최적화</br>
 **useMemo**</br>
-```
-// 1. 쓸데없는 렌더링 방지
+```javascript
+// 1. 아이콘의 쓸데없는 렌더링 방지
 {useMemo(() => <GiRainbowStar />, [])}
 
 // 2. done 값이 바뀔 때에만 렌더링
@@ -54,7 +54,7 @@
   {done && <MdDone />}
 </CheckCircle>, [done])}
 
-// 3. 쓸데없는 렌더링 방지
+// 3. 아이콘의 쓸데없는 렌더링 방지
 {useMemo(() => <Remove onClick={onRemove}>
   <MdDelete />
 </Remove>, [])}
@@ -70,8 +70,8 @@ const value = useMemo(() => ({ state, nextId, dispatch }), [state, nextId]);
 </br>
 
 **React.memo**</br>
-```
-// 불필요한 재렌더링 방지
+```javascript
+// 컴포넌트의 불필요한 재렌더링 방지
 export default memo(TDhead);
 export default memo(TDlist);
 export default memo(TDitem);
