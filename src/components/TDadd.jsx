@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useContext, useMemo, memo } from 'react';
+import React, { useState, useContext, useMemo, memo } from 'react';
 import styled, { css } from 'styled-components';
 import { MdAdd } from 'react-icons/md';
 import { TodosContext, CREATE } from '../TDcontext';
@@ -68,28 +68,41 @@ const TDadd = () => {
 
   const onClickBtn = () => setOpen(!open);
   const onChangeInput = (e) => setValue(e.target.value);
-  
-  const onSubmitForm = useCallback((e) => {
+
+  const onSubmitForm = (e) => {
     e.preventDefault();
+    if (value === '') {
+      return;
+    }
     dispatch({ type: CREATE, id: nextId.current, text: value });
     nextId.current += 1;
     setValue('');
     // eslint-disable-next-line
-  }, [value, nextId]);
+  };
 
   return (
     <>
       {open && (
         <InputFormContainer>
           <InputForm onSubmit={onSubmitForm}>
-            <Input autoFocus placeholder='할 일을 입력 후, ENTER를 누르세요.' value={value} onChange={onChangeInput} />
+            <Input
+              autoFocus
+              placeholder='할 일을 입력 후, ENTER를 누르세요.'
+              value={value}
+              onChange={onChangeInput}
+            />
           </InputForm>
         </InputFormContainer>
       )}
-      {useMemo(() => <AddBtn onClick={onClickBtn} open={open}>
-        <MdAdd />
-    {/* eslint-disable-next-line */}
-      </AddBtn>, [open])}
+      {useMemo(
+        () => (
+          <AddBtn onClick={onClickBtn} open={open}>
+            <MdAdd />
+            {/* eslint-disable-next-line */}
+          </AddBtn>
+        ),
+        [open]
+      )}
     </>
   );
 };

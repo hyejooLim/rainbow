@@ -37,7 +37,8 @@ const initialTodos = [];
 const TDcontext = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialTodos);
   const nextId = useRef(0);
-
+  
+  // value 값이 바뀔 때마다 컴포넌트가 재렌더링되는 것 방지
   const value = useMemo(() => ({ state, nextId, dispatch }), [state, nextId]);
 
   return (
