@@ -41,12 +41,16 @@
 </br>
 
 ## 3. 기술 스택</br>
-**React**로 만든 `rainbow`는 6개의 컴포넌트 각각이 재사용이 가능하고, 기능을 분리시켜 유지보수가 쉽습니다.
+* **React**</br>
+6개의 컴포넌트 각각이 재사용이 가능하고, 기능을 분리시켜 유지보수가 쉽습니다.</br>
+
+* **Context API**</br>
+각 컴포넌트에서 액션을 디스패치하고 하나의 파일에서 액션에 따라 상태를 관리합니다.</br> 
 
 ## 4. 성능 최적화</br>
 **useMemo**</br>
 ```javascript
-// 1. 아이콘의 쓸데없는 렌더링 방지
+// 1. 아이콘의 불필요한 렌더링 방지
 {useMemo(() => <GiRainbowStar />, [])}
 
 // 2. done 값이 바뀔 때에만 렌더링
@@ -54,7 +58,7 @@
   {done && <MdDone />}
 </CheckCircle>, [done])}
 
-// 3. 아이콘의 쓸데없는 렌더링 방지
+// 3. 아이콘의 불필요한 렌더링 방지
 {useMemo(() => <Remove onClick={onRemove}>
   <MdDelete />
 </Remove>, [])}
