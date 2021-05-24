@@ -50,7 +50,7 @@
 </br>
 
 ## 4. 성능 최적화</br>
-**useMemo**</br>
+* useMemo</br>
 ```javascript
 // 1. 아이콘의 불필요한 렌더링 방지
 {useMemo(() => <GiRainbowStar />, [])}
@@ -75,7 +75,7 @@ const value = useMemo(() => ({ state, nextId, dispatch }), [state, nextId]);
 ``` 
 </br>
 
-**React.memo**</br>
+* React.memo</br>
 ```javascript
 // 컴포넌트의 불필요한 재렌더링 방지
 export default memo(TDhead);
