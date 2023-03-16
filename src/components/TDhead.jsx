@@ -41,7 +41,6 @@ const TDhead = () => {
   });
 
   const { state } = useContext(TodosContext);
-  console.log(state);
   const leftWork = state.filter((todo) => !todo.done);
 
   return (

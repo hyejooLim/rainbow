@@ -59,7 +59,6 @@ const TDitem = ({ id, done, text }) => {
   const { dispatch } = useContext(TodosContext);
 
   const onToggle = () => {
-    console.log(id);
     dispatch({ type: TOGGLE, id });
   };
 
