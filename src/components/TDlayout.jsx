@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import TDhead from './TDhead';
+
 import TDlist from './TDlist';
 import TDadd from './TDadd';
+import WeatherInfo from './weatherInfo';
 
 const TDlayoutBlock = styled.div`
   width: 375px;
@@ -22,7 +23,7 @@ const TDlayout = () => {
   return (
     <>
       <TDlayoutBlock>
-        <TDhead />
+        <WeatherInfo />
         <TDlist />
         <TDadd />
       </TDlayoutBlock>
