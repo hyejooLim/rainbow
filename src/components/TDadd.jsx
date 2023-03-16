@@ -1,6 +1,8 @@
 import React, { useState, useContext, useMemo, memo } from 'react';
 import styled, { css } from 'styled-components';
 import { MdAdd } from 'react-icons/md';
+import shortid from 'shortid';
+
 import { TodosContext, CREATE } from '../TDcontext';
 
 const AddBtn = styled.button`
@@ -64,7 +66,7 @@ const TDadd = () => {
   const [value, setValue] = useState('');
   const [open, setOpen] = useState(false);
 
-  const { nextId, dispatch } = useContext(TodosContext);
+  const { dispatch } = useContext(TodosContext);
 
   const onClickBtn = () => setOpen(!open);
   const onChangeInput = (e) => setValue(e.target.value);
@@ -74,8 +76,7 @@ const TDadd = () => {
     if (value === '') {
       return;
     }
-    dispatch({ type: CREATE, id: nextId.current, text: value });
-    nextId.current += 1;
+    dispatch({ type: CREATE, id: shortid.generate(), text: value });
     setValue('');
     // eslint-disable-next-line
   };
@@ -85,12 +86,7 @@ const TDadd = () => {
       {open && (
         <InputFormContainer>
           <InputForm onSubmit={onSubmitForm}>
-            <Input
-              autoFocus
-              placeholder='할 일을 입력 후, ENTER를 누르세요.'
-              value={value}
-              onChange={onChangeInput}
-            />
+            <Input autoFocus placeholder='할 일을 입력 후, ENTER를 누르세요.' value={value} onChange={onChangeInput} />
           </InputForm>
         </InputFormContainer>
       )}
