@@ -8,6 +8,7 @@ export const TodosContext = createContext({
 });
 
 export const LOAD = 'LOAD';
+export const EDIT = 'EDIT';
 export const CREATE = 'CREATE';
 export const TOGGLE = 'TOGGLE';
 export const REMOVE = 'REMOVE';
@@ -23,6 +24,11 @@ const reducer = (state, action) => {
       localStorage.setItem(TODOS_KEY, JSON.stringify(todos));
 
       return state.concat(newTodo);
+    case EDIT:
+      const updatedTodos = state.map((todo) => (todo.id === action.id ? { ...todo, text: action.text } : todo));
+      localStorage.setItem(TODOS_KEY, JSON.stringify(updatedTodos));
+
+      return (state = updatedTodos);
     case TOGGLE:
       const toggledTodos = state.map((todo) => (todo.id === action.id ? { ...todo, done: !todo.done } : todo));
       localStorage.setItem(TODOS_KEY, JSON.stringify(toggledTodos));
