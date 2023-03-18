@@ -18,6 +18,9 @@ const TDheadBlock = styled.header`
     color: #4e4e4e;
     font-size: 25px;
     margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .day {
@@ -72,9 +75,8 @@ const TDhead = ({ weather }) => {
   return (
     <TDheadBlock>
       <h1 className='date'>
-        {dateString}
-        &nbsp;
-        {weatherIcon}
+        <span>{dateString}</span>
+        <span>{weatherIcon}</span>
       </h1>
       <div className='day'>{dayString}</div>
       <div className='left-work'>남은 할 일: {leftWork.length}개</div>
