@@ -33,7 +33,7 @@ const reducer = (state, action) => {
       const toggledTodos = state.map((todo) => (todo.id === action.id ? { ...todo, done: !todo.done } : todo));
       localStorage.setItem(TODOS_KEY, JSON.stringify(toggledTodos));
 
-      return state.map((todo) => (todo.id === action.id ? { ...todo, done: !todo.done } : todo));
+      return (state = toggledTodos);
     case REMOVE:
       const removedTodos = state.filter((todo) => todo.id !== action.id);
       localStorage.setItem(TODOS_KEY, JSON.stringify(removedTodos));
