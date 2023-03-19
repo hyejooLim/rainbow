@@ -19,7 +19,7 @@ const TDhead = ({ weather }) => {
 
   const dayString = date.toLocaleDateString('ko-KR', {
     weekday: 'long',
-  });g
+  });
 
   const { state } = useContext(TodosContext);
   const leftWork = state.filter((todo) => !todo.done);
