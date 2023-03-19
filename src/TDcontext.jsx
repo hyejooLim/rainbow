@@ -38,7 +38,7 @@ const reducer = (state, action) => {
       const removedTodos = state.filter((todo) => todo.id !== action.id);
       localStorage.setItem(TODOS_KEY, JSON.stringify(removedTodos));
 
-      return state.filter((todo) => todo.id !== action.id);
+      return (state = removedTodos);
     default:
       throw new Error('not invalid');
   }
