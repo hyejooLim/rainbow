@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const AddBtn = styled.button`
+export const AddButton = styled.button`
   width: 62px;
   height: 62px;
   font-size: 42px;

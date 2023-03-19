@@ -11,10 +11,10 @@ const TDadd = () => {
 
   const { dispatch } = useContext(TodosContext);
 
-  const onClickBtn = () => setOpen(!open);
-  const onChangeInput = (e) => setValue(e.target.value);
+  const handleChangeInput = (e) => setValue(e.target.value);
+  const handleAddButtonClick = () => setOpen(!open);
 
-  const onSubmitForm = (e) => {
+  const handleSubmitForm = (e) => {
     e.preventDefault();
     if (value === '') {
       return;
@@ -28,22 +28,22 @@ const TDadd = () => {
     <>
       {open && (
         <S.InputFormContainer>
-          <S.InputForm onSubmit={onSubmitForm}>
+          <S.InputForm onSubmit={handleSubmitForm}>
             <S.Input
               autoFocus
               placeholder='할 일을 입력 후, ENTER를 누르세요.'
               value={value}
-              onChange={onChangeInput}
+              onChange={handleChangeInput}
             />
           </S.InputForm>
         </S.InputFormContainer>
       )}
       {useMemo(
         () => (
-          <S.AddBtn onClick={onClickBtn} open={open}>
+          <S.AddButton onClick={handleAddButtonClick} open={open}>
             <MdAdd />
             {/* eslint-disable-next-line */}
-          </S.AddBtn>
+          </S.AddButton>
         ),
         [open]
       )}

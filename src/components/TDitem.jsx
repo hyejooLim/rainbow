@@ -10,41 +10,41 @@ const TDitem = ({ id, done, text }) => {
   const [value, setValue] = useState(text);
   const [isEditMode, setIsEditMode] = useState(false);
 
-  const onChangeValue = (e) => {
+  const handleValueChange = (e) => {
     setValue(e.target.value);
   };
 
-  const onClickEdit = () => {
+  const handleEditButtonClick = () => {
     setIsEditMode(true);
   };
 
-  const onCancelEdit = () => {
+  const handleEditCancel = () => {
     setValue(text);
     setIsEditMode(false);
   };
 
-  const onEdit = () => {
+  const handleEdit = () => {
     dispatch({ type: EDIT, id, text: value });
     setIsEditMode(false);
   };
 
-  const onToggle = () => {
+  const handleToggle = () => {
     dispatch({ type: TOGGLE, id });
   };
 
-  const onRemove = () => {
+  const handleRemove = () => {
     dispatch({ type: REMOVE, id });
   };
 
   useEffect(() => {
     window.addEventListener('click', (e) => {
       if (e.target.id === 'root') {
-        onCancelEdit();
+        handleEditCancel();
       }
     });
 
     return () => {
-      window.removeEventListener('click', onCancelEdit);
+      window.removeEventListener('click', handleEditCancel);
     };
   }, []);
 
@@ -53,22 +53,22 @@ const TDitem = ({ id, done, text }) => {
       <S.TDitemBlock>
         {isEditMode ? (
           <S.EditWrapper>
-            <input type='text' value={value} onChange={onChangeValue} />
-            <button class='edit' onClick={onEdit}>
+            <input type='text' value={value} onChange={handleValueChange} />
+            <button class='edit' onClick={handleEdit}>
               완료
             </button>
           </S.EditWrapper>
         ) : (
           <>
-            <S.CheckCircle onClick={onToggle} done={done}>
+            <S.CheckCircle onClick={handleToggle} done={done}>
               {done && <MdDone />}
               {/* eslint-disable-next-line */}
             </S.CheckCircle>
             <S.Text done={done}>{text}</S.Text>
-            <S.EditButton onClick={onClickEdit}>
+            <S.EditButton onClick={handleEditButtonClick}>
               <MdEdit />
             </S.EditButton>
-            <S.RemoveButton onClick={onRemove}>
+            <S.RemoveButton onClick={handleRemove}>
               <MdDelete />
               {/* eslint-disable-next-line */}
             </S.RemoveButton>
