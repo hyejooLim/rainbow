@@ -12,7 +12,13 @@ const TDadd = () => {
   const { dispatch } = useContext(TodosContext);
 
   const handleChangeInput = (e) => setValue(e.target.value);
-  const handleAddButtonClick = () => setOpen(!open);
+  const handleAddButtonClick = () => {
+    if (open) {
+      setValue('');
+    }
+
+    setOpen(!open);
+  };
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
