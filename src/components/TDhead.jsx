@@ -8,7 +8,10 @@ import { TodosContext } from '../TDcontext';
 import { TDheadBlock } from '../styles/TDhead';
 
 const TDhead = ({ weather }) => {
+  const { state } = useContext(TodosContext);
   const [weatherIcon, setWeatherIcon] = useState(null);
+
+  const leftWork = state.filter((todo) => !todo.done);
 
   const date = new Date();
   const dateString = date.toLocaleDateString('ko-KR', {
@@ -20,9 +23,6 @@ const TDhead = ({ weather }) => {
   const dayString = date.toLocaleDateString('ko-KR', {
     weekday: 'long',
   });
-
-  const { state } = useContext(TodosContext);
-  const leftWork = state.filter((todo) => !todo.done);
 
   useEffect(() => {
     switch (weather) {
