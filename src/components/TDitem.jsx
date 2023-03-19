@@ -14,9 +14,8 @@ const TDitem = ({ id, done, text }) => {
     setValue(e.target.value);
   };
 
-  const onEdit = () => {
-    dispatch({ type: EDIT, id, text: value });
-    setIsEditMode(false);
+  const onClickEdit = () => {
+    setIsEditMode(true);
   };
 
   const onCancelEdit = () => {
@@ -24,12 +23,13 @@ const TDitem = ({ id, done, text }) => {
     setIsEditMode(false);
   };
 
-  const onToggle = () => {
-    dispatch({ type: TOGGLE, id });
+  const onEdit = () => {
+    dispatch({ type: EDIT, id, text: value });
+    setIsEditMode(false);
   };
 
-  const onClickEdit = () => {
-    setIsEditMode(true);
+  const onToggle = () => {
+    dispatch({ type: TOGGLE, id });
   };
 
   const onRemove = () => {
@@ -65,13 +65,13 @@ const TDitem = ({ id, done, text }) => {
               {/* eslint-disable-next-line */}
             </S.CheckCircle>
             <S.Text done={done}>{text}</S.Text>
-            <S.Edit onClick={onClickEdit}>
+            <S.EditButton onClick={onClickEdit}>
               <MdEdit />
-            </S.Edit>
-            <S.Remove onClick={onRemove}>
+            </S.EditButton>
+            <S.RemoveButton onClick={onRemove}>
               <MdDelete />
               {/* eslint-disable-next-line */}
-            </S.Remove>
+            </S.RemoveButton>
           </>
         )}
       </S.TDitemBlock>

@@ -28,7 +28,7 @@ export const EditWrapper = styled.div`
   }
 `;
 
-export const Edit = styled.button`
+export const EditButton = styled.button`
   color: #7ba4f6;
   font-size: 20px;
   visibility: hidden;
@@ -38,7 +38,7 @@ export const Edit = styled.button`
   }
 `;
 
-export const Remove = styled.button`
+export const RemoveButton = styled.button`
   color: #c8c8c8;
   font-size: 20px;
   visibility: hidden;
@@ -55,7 +55,7 @@ export const TDitemBlock = styled.div`
   font-size: 16px;
 
   &:hover {
-    ${Remove}, ${Edit} {
+    ${RemoveButton}, ${EditButton} {
       visibility: visible;
     }
   }
