@@ -1,9 +1,12 @@
 import React, { useState, useContext, useMemo, memo } from 'react';
 import { MdAdd } from 'react-icons/md';
 import shortid from 'shortid';
+import JSConfetti from 'js-confetti';
 
 import { TodosContext, CREATE } from '../TDcontext';
 import * as S from '../styles/TDadd';
+
+const jsConfetti = new JSConfetti();
 
 const TDadd = () => {
   const [value, setValue] = useState('');
@@ -22,11 +25,17 @@ const TDadd = () => {
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
+
     if (value === '') {
       return;
     }
+
     dispatch({ type: CREATE, id: shortid.generate(), text: value });
     setValue('');
+    jsConfetti.addConfetti({
+      emojiSize: 60,
+      confettiNumber: 400,
+    });
     // eslint-disable-next-line
   };
 
