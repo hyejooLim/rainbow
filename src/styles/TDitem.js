@@ -7,8 +7,12 @@ export const EditWrapper = styled.div`
   align-items: center;
   margin-bottom: 5px;
 
-  input {
+  form {
     width: 75%;
+  }
+
+  input {
+    width: 100%;
     padding: 8px;
     font-size: 16px;
     border: 1px solid #aaa;

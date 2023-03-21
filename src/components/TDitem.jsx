@@ -53,7 +53,9 @@ const TDitem = ({ id, done, text }) => {
       <S.TDitemBlock>
         {isEditMode ? (
           <S.EditWrapper>
-            <input type='text' value={value} onChange={handleValueChange} />
+            <form onSubmit={handleEdit}>
+              <input type='text' value={value} onChange={handleValueChange} />
+            </form>
             <button class='edit' onClick={handleEdit}>
               완료
             </button>
