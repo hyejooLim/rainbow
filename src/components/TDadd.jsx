@@ -12,7 +12,7 @@ const TDadd = () => {
   const [value, setValue] = useState('');
   const [open, setOpen] = useState(false);
 
-  const { dispatch } = useContext(TodosContext);
+  const { state, dispatch } = useContext(TodosContext);
 
   const handleChangeInput = (e) => setValue(e.target.value);
   const handleAddButtonClick = () => {
@@ -32,10 +32,13 @@ const TDadd = () => {
 
     dispatch({ type: CREATE, id: shortid.generate(), text: value });
     setValue('');
-    jsConfetti.addConfetti({
-      emojiSize: 60,
-      confettiNumber: 400,
-    });
+
+    if (state.length === 0) {
+      jsConfetti.addConfetti({
+        emojiSize: 60,
+        confettiNumber: 400,
+      });
+    }
     // eslint-disable-next-line
   };
 
