@@ -1,5 +1,6 @@
 import React, { useEffect, useReducer, createContext, useMemo } from 'react';
 import { TODOS_KEY } from './config';
+import { getItem, setItem } from './localStorage';
 
 // context api
 export const TodosContext = createContext({
@@ -21,22 +22,22 @@ const reducer = (state, action) => {
     case CREATE:
       const newTodo = { id: action.id, text: action.text, done: false };
       const todos = state.concat(newTodo);
-      localStorage.setItem(TODOS_KEY, JSON.stringify(todos));
+      setItem(TODOS_KEY, todos);
 
       return state.concat(newTodo);
     case EDIT:
       const updatedTodos = state.map((todo) => (todo.id === action.id ? { ...todo, text: action.text } : todo));
-      localStorage.setItem(TODOS_KEY, JSON.stringify(updatedTodos));
+      setItem(TODOS_KEY, updatedTodos);
 
       return (state = updatedTodos);
     case TOGGLE:
       const toggledTodos = state.map((todo) => (todo.id === action.id ? { ...todo, done: !todo.done } : todo));
-      localStorage.setItem(TODOS_KEY, JSON.stringify(toggledTodos));
+      setItem(TODOS_KEY, toggledTodos);
 
       return (state = toggledTodos);
     case REMOVE:
       const removedTodos = state.filter((todo) => todo.id !== action.id);
-      localStorage.setItem(TODOS_KEY, JSON.stringify(removedTodos));
+      setItem(TODOS_KEY, removedTodos);
 
       return (state = removedTodos);
     default:
@@ -50,9 +51,9 @@ const TDcontext = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialTodos);
 
   useEffect(() => {
-    const savedTodos = localStorage.getItem(TODOS_KEY);
+    const savedTodos = getItem(TODOS_KEY);
     if (savedTodos) {
-      dispatch({ type: LOAD, data: JSON.parse(savedTodos) });
+      dispatch({ type: LOAD, data: savedTodos });
     }
   }, []);
 

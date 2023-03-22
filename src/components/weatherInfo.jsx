@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 
 import TDhead from './TDhead';
 import { API_KEY, WEATHER_BASE_URL } from '../config';
+import { getItem, setItem } from '../localStorage';
 
 const WeatherInfo = () => {
   const [weather, setWeather] = useState('');
 
   const saveCoords = (coordsObj) => {
-    localStorage.setItem(API_KEY, JSON.stringify(coordsObj));
+    setItem(API_KEY, coordsObj);
   };
 
   const handleGeoSuccess = (location) => {
@@ -33,13 +34,11 @@ const WeatherInfo = () => {
   };
 
   useEffect(() => {
-    const savedCoords = localStorage.getItem(API_KEY);
-
-    if (savedCoords === null) {
+    const savedCoords = getItem(API_KEY);
+    if (savedCoords === undefined) {
       askForCoords();
     } else {
-      const coords = JSON.parse(savedCoords);
-      getWeather(coords.latitude, coords.longitude);
+      getWeather(savedCoords.latitude, savedCoords.longitude);
     }
   });
 
