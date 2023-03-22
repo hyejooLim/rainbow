@@ -92,7 +92,14 @@ export default memo(TDadd);
 </br>
 
 ## 5. 스크린샷
-<img width="300" alt="rainbow" src="https://user-images.githubusercontent.com/71072930/226807557-46c1775f-e425-4798-b753-60601179d33f.png">
+
+<div>
+  <img width="240" alt="rainbow_suny" src="https://user-images.githubusercontent.com/71072930/226807833-ad2d013a-7edc-4eb4-bc61-007aaf8f1690.png">
+  <img width="240" alt="rainbow_cloudy" src="https://user-images.githubusercontent.com/71072930/226807557-46c1775f-e425-4798-b753-60601179d33f.png">
+  <img width="240" alt="rainbow_rainy" src="https://user-images.githubusercontent.com/71072930/226809207-e684245e-5854-404c-a0eb-871d114e3525.png">
+  <img width="240" alt="rainbow_snow" src="https://user-images.githubusercontent.com/71072930/226808626-4db71f87-931a-44f5-afe2-af632b07bac6.png">
+  </div>
+
 
 </br>
 
