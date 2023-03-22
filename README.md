@@ -91,9 +91,10 @@ export default memo(TDadd);
 
 </br>
 
-## 5. 스크린샷</br>
+## 5. 스크린샷
+<img width="300" alt="rainbow" src="https://user-images.githubusercontent.com/71072930/226807557-46c1775f-e425-4798-b753-60601179d33f.png">
 
-<img width="400" alt="rainbow" src="https://user-images.githubusercontent.com/71072930/114268674-381c6680-9a3d-11eb-86ce-97890033d6f5.png">
+</br>
 
 ## 6. 배포
 ### https://rainbow247.netlify.app
